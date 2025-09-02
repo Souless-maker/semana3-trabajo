@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Faro - Periódico Digital</title>
+    <!-- Importar tipografía de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* 
+        * ESTILOS GENERALES
+        * Se aplica tipografía externa, fondo gris y reset de márgenes
+        */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', 'Open Sans', sans-serif; /* Tipografía externa */
+        }
+        
+        body {
+            background-color: #f5f5f5; /* Fondo gris solicitado */
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 
+        * HEADER
+        * Estilos para la cabecera del sitio
+        */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            width: 80px;
+            height: 80px;
+            margin-right: 15px;
+            border-radius: 10px; /* Cambio de circular a esquinas redondeadas */
+            border: 3px solid #e74c3c;
+            object-fit: cover; /* Para que la imagen se ajuste bien */
+        }
+        
+        .logo h1 {
+            font-size: 2.5rem;
+            color: #e74c3c;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        /* 
+        * NAVEGACIÓN
+        * Estilos para la barra de navegación
+        */
+        nav {
+            background-color: #34495e;
+            padding: 10px 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none; /* Quitar subrayado por defecto */
+            font-weight: normal;
+            font-size: 1.1rem;
+            padding: 5px 10px;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Efecto hover para enlaces de navegación */
+        nav ul li a:hover {
+            background-color: #e74c3c;
+            font-weight: bold; /* Negrita al hover */
+            text-decoration: none; /* Quitar subrayado al hover */
+        }
+        
+        /* 
+        * SECCIONES DE CONTENIDO
+        * Ocultar/mostrar secciones según selección
+        */
+        section {
+            padding: 40px 0;
+            display: none;
+        }
+        
+        section.active {
+            display: block;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e74c3c;
+        }
+
+        /* 
+        * GRILLA DE ARTÍCULOS
+        * Usando CSS Grid para diseño responsivo
+        */
+        .contenedor-articulos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        /* 
+        * ARTÍCULOS INDIVIDUALES
+        * Estilos para cada artículo con efecto hover
+        */
+        .articulo {
+            background-color: white; /* Fondo blanco para artículos */
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Efecto hover para artículos */
+        .articulo:hover {
+            background-color: black; /* Fondo negro al hover */
+            color: white; /* Texto blanco al hover */
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .articulo h3 {
+            margin-bottom: 10px;
+            color: inherit;
+        }
+
+        .articulo p {
+            color: inherit;
+            margin-bottom: 10px;
+        }
+
+        .articulo .categoria {
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+
+        .articulo:hover .categoria {
+            color: #ff8a80; /* Cambio de color de categoría en hover */
+        }
+        
+        /* 
+        * MULTIMEDIA
+        * Estilos para videos y contenido multimedia
+        */
+        .multimedia {
+            margin: 30px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .youtube-video {
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        /* 
+        * FOOTER
+        * Estilos específicos solicitados para el footer
+        */
+        footer {
+            background-color: #c9d2d0; /* Color de fondo solicitado */
+            color: #31231e; /* Color de texto solicitado */
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #31231e;
+            text-decoration: underline; /* Subrayado normal */
+        }
+
+        footer a:hover {
+            font-weight: bold; /* Negrita al hover */
+            text-decoration: none; /* Quitar subrayado al hover */
+        }
+        
+        /* 
+        * RESPONSIVIDAD
+        * Media queries para adaptación a dispositivos móviles
+        */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 5px 0;
+            }
+            
+            .contenedor-articulos {
+                grid-template-columns: 1fr; /* Una columna en móviles */
+            }
+            
+            .youtube-video {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="https://i.imgur.com/4YhyJ5L.jpeg" alt="Logo El Faro - Faro Nocturno">
+                <h1>El Faro</h1>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#" onclick="showSection('inicio')">Inicio</a></li>
+                <li><a href="#" onclick="showSection('deporte')">Deporte</a></li>
+                <li><a href="#" onclick="showSection('negocios')">Negocios</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <!-- Sección de Inicio -->
+        <section id="inicio" class="active">
+            <h2>Noticias Generales</h2>
+            <div class="contenedor-articulos">
+                <div class="articulo">
+                    <h3>Emboscada en Victoria: Gobierno evaluará invocar Ley Antiterrorista</h3>
+                    <p class="categoria">Nacional</p>
+                    <p>El gobierno chileno está evaluando invocar la Ley Antiterrorista tras la emboscada ocurrida en Victoria, región de La Araucanía. El ministro del Interior señaló que se esperan más antecedentes para tomar una decisión definitiva. El incidente dejó varios heridos y daños materiales.</p>
+                </div>
+                <div class="articulo">
+                    <h3>Hombre de 102 años escala el monte Fuji y establece récord mundial</h3>
+                    <p class="categoria">Tendencias</p>
+                    <p>Kokichi Akuzawa, un japonés de 102 años, se ha convertido en la persona de más edad en escalar el monte Fuji, la montaña más alta de Japón. Akuzawa completó la hazaña en dos días y dijo que lo hizo para inspirar a las personas mayores a mantenerse activas.</p>
+                </div>
+                <div class="articulo">
+                    <h3>Mujer atrapada en habitación escribe mensaje de sangre pidiendo ayuda</h3>
+                    <p class="categoria">Tendencias</p>
+                    <p>Una mujer en China quedó atrapada en su habitación después de que la puerta se atascara. Tras 30 horas de encierro, escribió un mensaje con su propia sangre en una hoja de papel pidiendo ayuda, lo que alertó a los vecinos quienes la rescataron.</p>
+                </div>
+            </div>
+            
+            <div class="multimedia">
+                <h3>Video destacado</h3>
+                <iframe 
+                    class="youtube-video"
+                    src="https://www.youtube.com/embed/Vc85JECZ0b4" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+        
+        <!-- Sección de Deporte -->
+        <section id="deporte">
+            <h2>Deporte</h2>
+            <div class="contenedor-articulos">
+                <div class="articulo">
+                    <h3>Daniel González es convocado a la selección chilena para partidos amistosos</h3>
+                    <p class="categoria">Deporte</p>
+                    <p>El mediocampista Daniel González, quien actualmente milita en el club Universidad de Chile, ha sido convocado por el técnico de la selección chilena para los próximos partidos amistosos. Su rendimiento en el torneo local ha sido destacado, lo que ha llamado la atención del cuerpo técnico. González podría debutar con la camiseta nacional en el encuentro frente a Perú.</p>
+                </div>
+                <div class="articulo">
+                    <h3>Guillermo Maripán denuncia a su expareja por presunto acoso</h3>
+                    <p class="categoria">Deporte</p>
+                    <p>El defensa central de la selección chilena y del AS Mónaco, Guillermo Maripán, ha emitido un comunicado a través de sus redes sociales denunciando a su expareja por presunto acoso y difusión de información privada. Maripán pidió respeto a su privacidad y aseguró que tomará acciones legales.</p>
+                </div>
+                <div class="articulo">
+                    <h3>Cristian Garín sufre lesión muscular y podría perderse la Copa Davis</h3>
+                    <p class="categoria">Deporte</p>
+                    <p>El tenista chileno Cristian Garín ha sufrido una lesión en el gemelo derecho durante un entrenamiento en Barcelona. Esto pone en duda su participación en la próxima Copa Davis, donde Chile enfrentará a Suecia. El equipo médico evalúa su recuperación, pero se espera que esté fuera de las canchas por al menos dos semanas.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sección de Negocios -->
+        <section id="negocios">
+            <h2>Negocios</h2>
+            <div class="contenedor-articulos">
+                <div class="articulo">
+                    <h3>Precios de restaurantes en la Región Metropolitana aumentan un 10% en el último año</h3>
+                    <p class="categoria">Economía</p>
+                    <p>Según un estudio reciente, el valor promedio de una comida en restaurantes de la Región Metropolitana de Santiago ha aumentado un 10% en comparación con el año pasado. Este incremento se atribuye al alza en los costos de ingredientes y alza en el salario mínimo.</p>
+                </div>
+                <div class="articulo">
+                    <h3>Gobernadora de la Fed demandará a Trump tras ser despedida</h3>
+                    <p class="categoria">Economía</p>
+                    <p>La gobernadora de la Reserva Federal, despedida por el presidente Trump, anunció que presentará una demanda alegando que Trump no tiene la autoridad para destituirla. Expertos legales consideran que el caso podría llegar a la Corte Suprema.</p>
+                </div>
+                <div class="articulo">
+                    <h3>Dólar alcanza nuevo récord en el mercado cambiario local</h3>
+                    <p class="categoria">Economía</p>
+                    <p>El dólar estadounidense ha alcanzado un nuevo máximo histórico en el mercado cambiario chileno, superando los $1.000 pesos. Analistas atribuyen esta alza a la incertidumbre global y a la fortaleza del dólar a nivel internacional.</p>
+                </div>
+            </div>
+            
+            <div class="multimedia">
+                <h3>Video de negocios destacado</h3>
+                <iframe 
+                    class="youtube-video"
+                    src="https://www.youtube.com/embed/1WmJEXhKkHU" 
+                    title="Video de negocios" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 El Faro. Todos los derechos reservados.</p>
+            <p>Noticias obtenidas de <a href="#">EMOL.com</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Función para mostrar la sección seleccionada y ocultar las demás
+        function showSection(sectionId) {
+            // Ocultar todas las secciones
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Mostrar la sección seleccionada
+            document.getElementById(sectionId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
